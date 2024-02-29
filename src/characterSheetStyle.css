@@ -1,0 +1,66 @@
+.characterSheet {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.abilities {
+    padding: 40px;
+}
+
+.firstRowOfSheet {
+
+    display: flex;
+    padding: 40px;
+    background-color: rgb(162, 173, 173);
+
+}
+
+.secondRowOfSheet {
+
+    display: flex;
+    padding: 40px;
+    background-color: rgb(162, 173, 173);
+
+}
+
+.savingThrows {
+    padding: 40px;
+}
+
+.characterName {
+    order: 1;
+}
+
+.thirdRowOfSheet {
+
+}
+
+.skills {
+    padding: 40px;
+}
+
+
+
+.header {
+    order: 2;
+    padding: 40px;
+}
+
+.header .form-grid {
+    
+    display: grid;
+    grid-template-columns: none ;
+    grid-auto-columns: 3;
+    gap: 10px;
+}
+
+.header .form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header .form-column {
+    flex: 1;
+    margin-right: 10px;
+}

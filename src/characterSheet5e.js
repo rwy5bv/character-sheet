@@ -72,7 +72,7 @@ function SavingThrows({ strengthSave, dexSave, conSave, intSave, wisSave, chaSav
 
 }
 
-function Skills(acrobatics, animalHandling, arcana, athletics, deception, history, insight, intimidation, investigation, medicine, nature, perception, performance, persuasion, religion, sleightOfHand, stealth, survival) {
+function Skills({ acrobatics, animalHandling, arcana, athletics, deception, history, insight, intimidation, investigation, medicine, nature, perception, performance, persuasion, religion, sleightOfHand, stealth, survival }) {
   return (<div className="savingThrows">
     <h2>Skills</h2>
     <div formRow>
@@ -199,23 +199,256 @@ function Skills(acrobatics, animalHandling, arcana, athletics, deception, histor
 
 }
 
-function ArmorAndHealth({ }) {
+function ArmorAndHealth({ AC, maxHP, tempHP, currentHP }) {
+  return (<div className="armorAndHealth">
+    <form className="form-grid">
+      <form className="form-column">
+        <form className="form-row">
+          <label> AC</label>
+          <textarea
+            value={AC}
+          />
+          <br />
+          <label> Max HP</label>
+          <textarea
+            value={maxHP}
+          />
+          <br />
+          <label> Temp HP</label>
+          <textarea
+            value={tempHP}
+          />
+          <br />
+
+        </form>
+        <form className="form-row">
+          <label> Current HP</label>
+          <textarea
+            value={currentHP}
+          />
+          <br />
+
+        </form>
+      </form>
+    </form>
+  </div>);
+}
+
+function Passives({ inspiration, proficiencyBonus, initiative, speed, vision }) {
+  return (
+    <div className="passives">
+      <form>
+        <label>Inspiration</label>
+        <input type="checkbox" value={inspiration}></input>
+        <br />
+        <label> Proficiency Bonus </label>
+        <textarea
+          value={proficiencyBonus}
+        />
+        <br />
+        <label> Initiative </label>
+        <textarea
+          value={initiative}
+        />
+        <br />
+        <label> Speed </label>
+        <textarea value={speed}></textarea>
+        <br />
+        <label> Vision </label>
+        <textarea value={vision}></textarea>
+      </form>
+    </div>);
 
 }
-function AttacksAndSpellcasting() {
+
+function HitDice({ d6Current, d6Max, d8Current, d8Max, d10Current, d10Max, d12Current, d12Max }) {
+  return (
+    <div className="hitDice">
+      <div classname="form-row">
+        <textarea placeholder="Max" value={d6Max} />
+        <p>d6</p>
+        <textarea placeholder="Current" value={d6Current} />
+      </div>
+      <div classname="form-row">
+        <textarea placeholder="Max" value={d8Max} />
+        <p>d8</p>
+        <textarea placeholder="Current" value={d8Current} />
+      </div>
+      <div classname="form-row">
+        <textarea placeholder="Max" value={d10Max} />
+        <p>d10</p>
+        <textarea placeholder="Current" value={d10Current} />
+      </div>
+      <div classname="form-row">
+        <textarea placeholder="Max" value={d12Max} />
+        <p>d12</p>
+        <textarea placeholder="Current" value={d12Current} />
+      </div>
+    </div>
+  );
 
 }
 
-function FeaturesAndTraits() {
+function DeathSaves({ successes, failures }) {
+  return (
+    <div className="deathSaves">
+      <h2>Death Saves</h2>
+      <label>Successes</label>
+      <input type="checkbox" name="success1" />
+      <input type="checkbox" name="success2" />
+      <input type="checkbox" name="success3" />
+      <br />
+      <label>Failures</label>
+      <input type="checkbox" name="failure1" />
+      <input type="checkbox" name="failure2" />
+      <input type="checkbox" name="failure3" />
+      <br />
+    </div>
+  );
+}
+
+function AttacksAndSpellcasting({ name, attackModifier, damage, range, ammo, used }) {
+  const columnLabels = ["Name", "Attack Modifier", "Damage", "Range", "Ammo", "Used?"];
+  const [rowData, setRowData] = useState([{}]);
+
+  const handleInputChange = (index, column, value) => {
+    // Update the state with the new value for the specified row and column
+    const updatedRowData = [...rowData];
+    updatedRowData[index][column] = value;
+    setRowData(updatedRowData);
+  };
+
+  const renderHeader = () => {
+    return (
+      <tr>
+        {columnLabels.map((label, index) => (
+          <th key={index}>{label}</th>
+        ))}
+      </tr>
+    );
+  };
+  const renderRows = () => {
+    return rowData.map((row, rowIndex) => (
+      <tr key={rowIndex}>
+        {columnLabels.map((column, columnIndex) => (
+          <td key={columnIndex}>
+            <textarea
+              value={row[column] || ''}
+              onChange={(e) => handleInputChange(rowIndex, column, e.target.value)}
+            />
+          </td>
+        ))}
+      </tr>
+    ));
+  };
+
+  const handleAddRow = () => {
+    setRowData([...rowData, {}]); // Add a new row with empty values
+  };
+
+  return (
+    <div className="attacksAndSpellcasting">
+      <table>
+        <thead>{renderHeader()}</thead>
+        <tbody>{renderRows()}</tbody>
+      </table>
+      <button onClick={handleAddRow}>Add Row</button>
+    </div>
+  );
+}
+
+function FeaturesAndTraits({ features, traits }) {
+  return (
+    <div className="featuresAndTraits">
+      <h2> Features</h2>
+      <form>
+        <textarea
+          placeholder="Features"
+          value={features}
+        />
+      </form>
+      <br />
+      <h2> Traits </h2>
+      <form>
+        <textarea
+          placeholder="Traits"
+          value={traits}
+        />
+      </form>
+    </div>
+  );
+}
+
+function ProficienciesAndLanguages({ proficiencies, languages }) {
+  return (
+    <div className="notes">
+      <h2> Other Proficiencies </h2>
+      <form>
+        <textarea
+          placeholder="Other Proficiencies"
+          value={proficiencies}
+        />
+      </form>
+      <br />
+      <h2> Languages </h2>
+      <form>
+        <textarea
+          placeholder="Languages"
+          value={languages}
+        />
+      </form>
+    </div>
+  );
 
 }
 
-function ProficienciesAndLanguages() {
+function Notes({ notes }) {
+  return (
+    <div className="notes">
+      <h2> Notes </h2>
+      <form>
+        <textarea rows={30}
+          placeholder="Write Notes Here"
+          value={notes}
+        />
+      </form>
+    </div>
+  );
 
 }
 
-function Notes() {
+function Currency({ currency }) {
+  return (
+    <div className="currency">
+      <table>
+        <tr>
+          <th>CP</th>
+          <th>SP</th>
+          <th>EP</th>
+          <th>GP</th>
+          <th>PP</th>
+        </tr>
+        <tr>
+          <td>
+            <textarea></textarea>
+          </td>
+          <td>
+            <textarea></textarea>
+          </td>
+          <td>
+            <textarea></textarea>
+          </td>
+          <td>
+            <textarea></textarea>
+          </td>
+          <td>
+            <textarea></textarea>
+          </td>
+        </tr>
+      </table>
+    </div>
 
+  );
 }
 
 
@@ -262,7 +495,7 @@ function Abilities({ strength, dexterity, constitution, intelligence, wisdom, ch
   );
 }
 
-function Header(classAndLevel, background, playerName, race, alignment, experiencePoints) {
+function Header({ classAndLevel, background, playerName, race, alignment, experiencePoints }) {
   return (
     <div className="header">
       <form className="form-grid">
@@ -322,44 +555,64 @@ function Header(classAndLevel, background, playerName, race, alignment, experien
 }
 
 function CharacterSheet5e() {
-  const [name, setName] = useState("");
-  const classAndLevel = {
+  const [name, setName] = useState("Donald");
+  const [classAndLevel, setClassAndLevel] = useState({
     characterClass: "Wizard",
     level: 20
-  };
+  });
   return (
     <>
+      <div className="topOfSheet">
+        <h1> D&D 5e Character Sheet</h1>
+      </div>
+      <div className="submitButton">
+        <button>
+          Submit
+        </button>
+      </div>
       <div className="characterSheet">
-        <div className="firstRowOfSheet">
+        <div className="firstColumnOfSheet">
           <CharacterName name={name} />
-          <Header classAndLevel={classAndLevel} background="Fortnite" />
+          <Abilities
+            strength={20}
+            dexterity={15}
+            constitution={15}
+            intelligence={12}
+            wisdom={12}
+            charisma={10} />
+
+          <SavingThrows
+            strengthSave={15}
+            dexSave={12}
+            conSave={14}
+            intSave={20}
+            wisSave={12}
+            chaSave={20} />
+          <Skills />
         </div>
+        <div className="secondColumnOfSheet">
+          <Header classAndLevel={classAndLevel} background="Fortnite" />
+          <div className="resourcesDashboard">
+            <div className="resourcesDashboardLeft">
+              <ArmorAndHealth />
+            </div>
+            <div classname="resourcesDashboardRight">
+              <HitDice />
+              <DeathSaves />
+              <Passives />
+            </div>
+            <AttacksAndSpellcasting />
+          </div>
+        </div>
+        <div className="thirdColumnOfSheet">
 
+          <ProficienciesAndLanguages />
+          <FeaturesAndTraits />
+          <Currency />
+          <Notes notes="test" />
 
+        </div>
       </div>
-      <div className="secondRowOfSheet">
-        <Abilities
-          strength={20}
-          dexterity={15}
-          constitution={15}
-          intelligence={12}
-          wisdom={12}
-          charisma={10} />
-        <SavingThrows
-          strengthSave={15}
-          dexSave={12}
-          conSave={14}
-          intSave={20}
-          wisSave={12}
-          chaSave={20} />
-        <ArmorAndHealth />
-      </div>
-      <div classname="thirdRowOfSheet">
-        <Skills />
-      </div>
-      <button>
-        Submit
-      </button>
     </>
   );
 }

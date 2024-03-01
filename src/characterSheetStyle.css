@@ -1,6 +1,16 @@
+.topOfSheet {
+    margin: auto;
+    text-align: center;
+    border: 3px solid red;
+    color: red;
+}
 .characterSheet {
+    padding: 80px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    
 
 }
 
@@ -8,19 +18,33 @@
     padding: 40px;
 }
 
-.firstRowOfSheet {
+.firstColumnOfSheet {
 
     display: flex;
+    flex-grow: 1;
+    flex-direction: column; 
     padding: 40px;
     background-color: rgb(162, 173, 173);
 
 }
 
-.secondRowOfSheet {
+.secondColumnOfSheet {
 
     display: flex;
+    flex-grow: 1;
+    flex-direction: column; 
     padding: 40px;
-    background-color: rgb(162, 173, 173);
+    background-color: grey;
+
+}
+
+.thirdColumnOfSheet {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column; 
+
+    padding: 40px;
+    background-color: rgba(126, 134, 131, 0.587);
 
 }
 
@@ -29,11 +53,7 @@
 }
 
 .characterName {
-    order: 1;
-}
-
-.thirdRowOfSheet {
-
+    padding: 40px;
 }
 
 .skills {
@@ -43,7 +63,6 @@
 
 
 .header {
-    order: 2;
     padding: 40px;
 }
 
@@ -63,4 +82,11 @@
 .header .form-column {
     flex: 1;
     margin-right: 10px;
+}
+
+.armorAndHealth .form-grid {
+    display: grid;
+    grid-auto-columns: 1;
+    gap: 10px;
+
 }

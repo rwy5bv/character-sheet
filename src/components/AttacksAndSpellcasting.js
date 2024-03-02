@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-const TableComponent = () => {
-  const columnLabels = ['Name', 'AttackModifier', 'Damage', 'Range', 'AnotherColumn', 'YetAnotherColumn'];
-  const [rowData, setRowData] = useState([]);
+export function AttacksAndSpellcasting({ name, attackModifier, damage, range, ammo, used }) {
+  const columnLabels = ["Name", "Attack Modifier", "Damage", "Range", "Ammo", "Used?"];
+  const [rowData, setRowData] = useState([{}]);
 
   const handleInputChange = (index, column, value) => {
     // Update the state with the new value for the specified row and column
@@ -20,7 +20,6 @@ const TableComponent = () => {
       </tr>
     );
   };
-
   const renderRows = () => {
     return rowData.map((row, rowIndex) => (
       <tr key={rowIndex}>
@@ -28,8 +27,7 @@ const TableComponent = () => {
           <td key={columnIndex}>
             <textarea
               value={row[column] || ''}
-              onChange={(e) => handleInputChange(rowIndex, column, e.target.value)}
-            />
+              onChange={(e) => handleInputChange(rowIndex, column, e.target.value)} />
           </td>
         ))}
       </tr>
@@ -41,7 +39,7 @@ const TableComponent = () => {
   };
 
   return (
-    <div>
+    <div className="attacksAndSpellcasting">
       <table>
         <thead>{renderHeader()}</thead>
         <tbody>{renderRows()}</tbody>
@@ -49,6 +47,4 @@ const TableComponent = () => {
       <button onClick={handleAddRow}>Add Row</button>
     </div>
   );
-};
-
-export default TableComponent;
+}

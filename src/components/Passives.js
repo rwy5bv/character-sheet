@@ -1,24 +1,50 @@
 export function Passives({ inspiration, proficiencyBonus, initiative, speed, vision }) {
   return (
     <div className="passives">
-      <form>
-        <label>Inspiration</label>
-        <input type="checkbox" value={inspiration}></input>
-        <br />
-        <label> Proficiency Bonus </label>
-        <textarea
-          value={proficiencyBonus} />
-        <br />
-        <label> Initiative </label>
-        <textarea
-          value={initiative} />
-        <br />
-        <label> Speed </label>
-        <textarea value={speed}></textarea>
-        <br />
-        <label> Vision </label>
-        <textarea value={vision}></textarea>
-      </form>
+      <table>
+        <tr>
+          <td>
+            Inspiration
+          </td>
+          <td>
+            <input type="checkbox" value={inspiration}></input>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Proficiency Bonus
+          </td>
+          <td>
+            <input type="text"
+              value={proficiencyBonus} />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label> Initiative </label>
+          </td>
+          <td>
+            <input type="text"
+              value={initiative} />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label> Speed </label>
+          </td>
+          <td>
+            <input type="text" value={speed}></input>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label> Vision </label>
+          </td>
+          <td>
+            <input type="text" value={vision}></input>
+          </td>
+        </tr>
+      </table>
     </div>);
 
 }

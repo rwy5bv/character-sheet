@@ -1,50 +1,31 @@
 export function Header({ classAndLevel, background, playerName, race, alignment, experiencePoints }) {
   return (
     <div className="header">
-      <form className="form-grid">
-        <form className="form-row">
-          <form className="form-column">
-            <p> Class & Level</p>
-            <textarea
-              value={classAndLevel.characterClass} />
-            <textarea
-              value={classAndLevel.level} />
-            <br />
-          </form>
-          <form className="form-column">
-            <p> Background </p>
-            <textarea
-              value={background} />
-          </form>
-          <form className="form-column">
-            <p> Player Name</p>
-            <br />
-            <textarea
-              value={playerName} />
-          </form>
-        </form>
-        <form className="form-row">
-          <form className="form-column">
-            <p> Race</p>
-            <br />
-            <textarea
-              value={race} />
-          </form>
-          <form className="form-column">
-            <p> Alignment</p>
-            <br />
-            <textarea
-              value={alignment} />
-          </form>
-          <form className="form-column">
-            <p> Experience Points</p>
-            <br />
-            <textarea
-              value={experiencePoints} />
-            <br />
-          </form>
-        </form>
-      </form>
+      <table>
+        <tr>
+          <th>Class & Level</th>
+          <th>Background</th>
+          <th>Player Name</th>
+        </tr>
+        <tr>
+          <td>
+            <input type="text" value={classAndLevel.characterClass} />
+            <input type="text" value={classAndLevel.level} />
+          </td>
+          <td><input type="text" value={background} /></td>
+          <td><input type="text" value={playerName} /></td>
+        </tr>
+        <tr>
+          <th>Race</th>
+          <th>Alignment</th>
+          <th>Experience Points</th>
+        </tr>
+        <tr>
+          <td><input type="text" value={race} /></td>
+          <td><input type="text" value={alignment} /></td>
+          <td><input type="text" value={experiencePoints} /></td>
+        </tr>
+      </table>
     </div>
   );
 

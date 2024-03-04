@@ -1,30 +1,24 @@
+import "./ArmorAndHealth.css";
 export function ArmorAndHealth({ AC, maxHP, tempHP, currentHP }) {
   return (<div className="armorAndHealth">
-    <form className="form-grid">
-      <form className="form-column">
-        <form className="form-row">
-          <label> AC</label>
-          <textarea
-            value={AC} />
-          <br />
-          <label> Max HP</label>
-          <textarea
-            value={maxHP} />
-          <br />
-          <label> Temp HP</label>
-          <textarea
-            value={tempHP} />
-          <br />
-
-        </form>
-        <form className="form-row">
-          <label> Current HP</label>
-          <textarea
-            value={currentHP} />
-          <br />
-
-        </form>
-      </form>
-    </form>
-  </div>);
+    <table>
+      <tr>
+        <td><label> AC</label></td>
+        <td><input type="text" value={AC} /></td>
+      </tr>
+      <tr>
+        <td><label> Max HP</label></td>
+        <td><input type="text" value={maxHP} /></td>
+      </tr>
+      <tr>
+        <td><label> Temp HP</label></td>
+        <td><input type="text" value={tempHP} /></td>
+      </tr>
+      <tr>
+        <td><label> Current HP</label></td>
+        <td><input type="text" value={currentHP} /></td>
+      </tr>
+    </table>
+  </div>
+  );
 }

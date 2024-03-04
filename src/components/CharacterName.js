@@ -3,10 +3,8 @@ export function CharacterName({ name }) {
     <div className="characterName">
       <h2> Character Name</h2>
       <form>
-        <textarea
+        <input type="text"
           value={name} />
-        <br />
-
       </form>
     </div>
   );

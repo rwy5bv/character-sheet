@@ -14,11 +14,7 @@
     align-items: flex-start;
     width: 800px;
 
-    
-
 }
-
-
 
 .firstColumnOfSheet {
 
@@ -44,45 +40,4 @@
     padding: 40px;
     background-color: rgba(126, 134, 131, 0.587);
     flex-grow: 1;
-}
-
-.savingThrows {
-    padding: 40px;
-}
-
-.characterName {
-    padding: 40px;
-}
-
-.skills {
-    padding: 40px;
-}
-
-.header {
-    padding: 40px;
-}
-
-.header .form-grid {
-    
-    display: grid;
-    grid-template-columns: none ;
-    grid-auto-columns: 3;
-    gap: 10px;
-}
-
-.header .form-row {
-    /*display: flex;
-    justify-content: space-between;*/
-}
-
-.header .form-column {
-    flex: 1;
-    margin-right: 10px;
-}
-
-.armorAndHealth .form-grid {
-    display: grid;
-    grid-auto-columns: 1;
-    gap: 10px;
-
 }

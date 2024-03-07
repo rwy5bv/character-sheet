@@ -1,43 +1,62 @@
-.topOfSheet {
-    margin: auto;
-    text-align: center;
-    border: 3px solid red;
-    color: red;
+/*This sheet stores the layout of the title bar, character sheet, and global stylings*/
+/*Stylings specific to components can be found in their related css file*/
+* {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: url("images/diceBackground.webp");
+    background-repeat: repeat;
 }
 
 .characterSheet {
-    padding: 80px;
-    margin: auto;
+    /*margin: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: flex-start;
-    width: 800px;
+    max-width: 1400px;
+    border: solid;
+    background-color: crimson;*/
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 1.5fr;
+    grid-template-rows: repeat(14, 1fr);
 
+}
+
+.topOfSheet {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
 }
 
 .firstColumnOfSheet {
-
+    grid-column: 1/2;
+    /*grid-row: 1/2;*/
     display: flex;
     flex-direction: column; 
-    padding: 40px;
     background-color: rgb(162, 173, 173);
-    flex-grow: 1;
 }
 
 .secondColumnOfSheet {
-
+    grid-column: 2/3;
+    /*grid-row: 1/2;*/
     display: flex;
     flex-direction: column; 
-    padding: 40px;
     background-color: grey;
-    flex-grow: 1;
 }
 
 .thirdColumnOfSheet {
+    grid-column: 3/4;
+    /*grid-row: 1/2;*/
     display: flex;
     flex-direction: column; 
-    padding: 40px;
     background-color: rgba(126, 134, 131, 0.587);
-    flex-grow: 1;
 }

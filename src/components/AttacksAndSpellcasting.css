@@ -1,3 +1,15 @@
+.attacksAndSpellcasting {
+
+}
 .attacksAndSpellcasting input {
-    
+    background-color: rgb(181, 176, 176);
+    scale: auto;
+}
+
+.attacksAndSpellcasting table {
+    border-collapse: separate;
+    table-layout: fixed;
+    max-width: 100%;
+    overflow: hidden;
+
 }

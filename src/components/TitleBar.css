@@ -1,0 +1,8 @@
+.titleBar {
+    margin: auto;
+    text-align: center;
+    border: 3px solid red;
+    color: red;
+    background-color: white;
+    width: 100vw;
+}

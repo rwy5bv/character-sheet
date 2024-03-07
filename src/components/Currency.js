@@ -3,10 +3,6 @@ export function Currency({ currency }) {
     <div className="currency">
     <table>
       <tr>
-        <th>Input</th>
-        <td><input type="text" /></td>
-      </tr>
-      <tr>
         <th>CP</th>
         <td><input type="text" /></td>
       </tr>

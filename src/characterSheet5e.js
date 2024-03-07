@@ -14,6 +14,10 @@ import { Notes } from './components/Notes';
 import { Currency } from './components/Currency';
 import { Abilities } from './components/Abilities';
 import { Header } from './components/Header';
+import { SubmitButton } from './components/SubmitButton';
+import { TitleBar } from './components/TitleBar';
+import { Links } from './components/Links';
+import { CharacterPicture } from './components/CharacterPicture';
 
 function CharacterSheet5e() {
   const [name, setName] = useState("Donald");
@@ -24,54 +28,31 @@ function CharacterSheet5e() {
   return (
     <>
       <div className="topOfSheet">
-        <h1> D&D 5e Character Sheet</h1>
-      </div>
-      <div className="submitButton">
-        <button>
-          Submit
-        </button>
+        <TitleBar />
+        <Links />
+        <SubmitButton />
       </div>
       <div className="characterSheet">
         <div className="firstColumnOfSheet">
-          <CharacterName name={name} />
-          <Abilities
-            strength={20}
-            dexterity={15}
-            constitution={15}
-            intelligence={12}
-            wisdom={12}
-            charisma={10} />
-
-          <SavingThrows
-            strengthSave={15}
-            dexSave={12}
-            conSave={14}
-            intSave={20}
-            wisSave={12}
-            chaSave={20} />
+          <CharacterPicture />
+          <CharacterName />
+          <Abilities />
+          <SavingThrows />
           <Skills />
         </div>
         <div className="secondColumnOfSheet">
-          <Header classAndLevel={classAndLevel} background="Fortnite" />
-          <div className="resourcesDashboard">
-            <div className="resourcesDashboardLeft">
-              <ArmorAndHealth />
-            </div>
-            <div classname="resourcesDashboardRight">
-              <HitDice />
-              <DeathSaves />
-              <Passives />
-            </div>
-            <AttacksAndSpellcasting />
-          </div>
+          <Header classAndLevel={classAndLevel} />
+          <ArmorAndHealth />
+          <HitDice />
+          <DeathSaves />
+          <Passives />
+          <AttacksAndSpellcasting />
         </div>
         <div className="thirdColumnOfSheet">
-
           <ProficienciesAndLanguages />
           <FeaturesAndTraits />
           <Currency />
           <Notes notes="test" />
-
         </div>
       </div>
     </>

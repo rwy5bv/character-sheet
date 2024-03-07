@@ -7,32 +7,32 @@ export function SavingThrows({ strengthSave, dexSave, conSave, intSave, wisSave,
         <tr>
           <td><button type="radio"></button></td>
           <td><label> Strength </label></td>
-          <td><input type="text" value={strengthSave} /></td>
+          <td><input type="text" placeholder="+5" value={strengthSave} /></td>
         </tr>
         <tr>
           <td><button type="radio"></button></td>
           <td><label> Dexterity </label></td>
-          <td><input type="text" value={dexSave} /></td>
+          <td><input type="text" placeholder="+5" value={dexSave} /></td>
         </tr>
         <tr>
           <td><button type="radio"></button></td>
           <td><label> Constitution </label></td>
-          <td><input type="text" value={conSave} /></td>
+          <td><input type="text" placeholder="+5" value={conSave} /></td>
         </tr>
         <tr>
           <td><button type="radio"></button></td>
           <td><label> Intelligence </label></td>
-          <td><input type="text" value={intSave} /></td>
+          <td><input type="text" placeholder="+5" value={intSave} /></td>
         </tr>
         <tr>
           <td><button type="radio"></button></td>
           <td><label> Wisdom </label></td>
-          <td><input type="text" value={wisSave} /></td>
+          <td><input type="text" placeholder="+5" value={wisSave} /></td>
         </tr>
         <tr>
           <td><button type="radio"></button></td>
           <td><label> Charisma </label></td>
-          <td><input type="text" value={chaSave} /></td>
+          <td><input type="text" placeholder="+5" value={chaSave} /></td>
         </tr>
       </table>
     </div>

@@ -2,7 +2,7 @@ import "./AttacksAndSpellcasting.css";
 import { useState } from 'react';
 
 export function AttacksAndSpellcasting({ name, attackModifier, damage, range, ammo, used }) {
-  const columnLabels = ["Name", "Attack Modifier/DC", "Damage", "Range", "Ammo", "Used?"];
+  const columnLabels = ["Name", "Attack Modifier/DC", "Damage", "Range", "Ammo"];
   const [rowData, setRowData] = useState([{}]);
 
   const handleInputChange = (index, column, value) => {

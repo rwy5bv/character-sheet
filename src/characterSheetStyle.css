@@ -15,6 +15,10 @@ body {
     background-repeat: repeat;
 }
 
+.submitButton button {
+    background-color: lightgreen;
+}
+
 .characterSheet {
     /*margin: auto;
     display: flex;
@@ -22,11 +26,15 @@ body {
     justify-content: space-evenly;
     align-items: flex-start;
     max-width: 1400px;
-    border: solid;
+
     background-color: crimson;*/
+    border: solid;
+    background-color: rgba(255, 251, 251, 0.63);
     display: grid;
-    grid-template-columns: 1.5fr 2fr 1.5fr;
-    grid-template-rows: repeat(14, 1fr);
+    grid-template-columns: 1.5fr 1fr  1fr 1.5fr;
+    grid-template-rows: repeat(14, 150px);
+    justify-items: center;
+    align-items: center;
 
 }
 
@@ -37,9 +45,12 @@ body {
     justify-content: center;
 }
 
+/*Changing to grid layout, relic of flexbox days */
+/*
 .firstColumnOfSheet {
     grid-column: 1/2;
-    /*grid-row: 1/2;*/
+    display: grid;
+    grid-row: 1/2;
     display: flex;
     flex-direction: column; 
     background-color: rgb(162, 173, 173);
@@ -47,7 +58,7 @@ body {
 
 .secondColumnOfSheet {
     grid-column: 2/3;
-    /*grid-row: 1/2;*/
+    grid-row: 1/2;
     display: flex;
     flex-direction: column; 
     background-color: grey;
@@ -55,8 +66,82 @@ body {
 
 .thirdColumnOfSheet {
     grid-column: 3/4;
-    /*grid-row: 1/2;*/
+    grid-row: 1/2;
     display: flex;
     flex-direction: column; 
     background-color: rgba(126, 134, 131, 0.587);
 }
+*/
+.characterPicture {
+    grid-column: 1/2;
+    grid-row: 1/3;
+}
+
+.characterName {
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+
+.abilities {
+    grid-column: 1/2;
+    grid-row: 4/6;
+}
+
+.savingThrows {
+    grid-column: 1/2;
+    grid-row: 6/8;
+}
+
+.skills {
+    grid-column: 1/2;
+    grid-row: 8/12
+}
+
+.header {
+    grid-column: 2/4;
+    grid-row: 1/2;
+}
+
+.armorAndHealth {
+    grid-column: 2/3;
+    grid-row: 2/4;
+}
+.hitDice {
+    grid-column: 3/4;
+    grid-row: 2/4; 
+}
+.deathSaves {
+    grid-column: 2/3;
+    grid-row: 4/5; 
+}
+
+.passives {
+    grid-column: 3/4;
+    grid-row: 4/5; 
+}
+
+.attacksAndSpellcasting {
+    grid-column: 2/4;
+    grid-row: 5/8
+}
+
+.proficienciesAndLanguages {
+    grid-column: 4/5;
+    grid-row: 1/3;
+}
+
+.featuresAndTraits {
+    grid-column: 4/5;
+    grid-row: 3/5;
+}
+
+.currency {
+    grid-column: 4/5;
+    grid-row: 5/6;
+}
+
+.notes {
+    grid-column: 4/5;
+    grid-row: 6/9;
+}
+

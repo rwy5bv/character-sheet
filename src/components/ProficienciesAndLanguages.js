@@ -1,6 +1,6 @@
 export function ProficienciesAndLanguages({ proficiencies, languages }) {
   return (
-    <div className="notes">
+    <div className="proficienciesAndLanguages">
       <h2> Other Proficiencies </h2>
       <form>
         <textarea

@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+import "./Header.css";
 export function Header({ classAndLevel, background, playerName, race, alignment, experiencePoints }) {
   return (
     <div className="header">
@@ -9,11 +11,11 @@ export function Header({ classAndLevel, background, playerName, race, alignment,
         </tr>
         <tr>
           <td>
-            <input type="text" value={classAndLevel.characterClass} />
-            <input type="text" value={classAndLevel.level} />
+            <input type="text"  />
+            <input type="text"  />
           </td>
-          <td><input type="text" value={background} /></td>
-          <td><input type="text" value={playerName} /></td>
+          <td><input type="text" value={background} width = "50%" /></td>
+          <td><input type="text" value={playerName} width = "50%"/></td>
         </tr>
         <tr>
           <th>Race</th>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import './characterSheetStyle.css';
 import { CharacterName } from './components/CharacterName';
 import { SavingThrows } from './components/SavingThrows';
@@ -14,46 +15,66 @@ import { Notes } from './components/Notes';
 import { Currency } from './components/Currency';
 import { Abilities } from './components/Abilities';
 import { Header } from './components/Header';
-import { SubmitButton } from './components/SubmitButton';
 import { TitleBar } from './components/TitleBar';
 import { Links } from './components/Links';
 import { CharacterPicture } from './components/CharacterPicture';
 
+
 function CharacterSheet5e() {
-  const [name, setName] = useState("Donald");
-  const [classAndLevel, setClassAndLevel] = useState({
-    characterClass: "Wizard",
-    level: 20
-  });
+  const [formData, setFormData] = useState({});
+
+  function handleInputChange(childId, inputValue){
+    setFormData(prevData => ({
+      ...prevData,
+      [childId]: inputValue,
+    }));
+  
+  }
+
+  async function submitCharacterSheetData(postData) {
+    try {
+      const { data } = await axios.post('https://api.example.com/post-endpoint', postData)
+      console.log(data);
+    } catch (error) {
+      console.error(error)
+    }
+  
+  
+  }
+  
+  function SubmitButton({postData}) {
+    return (<div className="submitButton">
+      <button onClick={async () => submitCharacterSheetData(postData)}>
+        Upload
+      </button >
+    </div>
+    );
+  };
+
   return (
     <>
       <div className="topOfSheet">
         <TitleBar />
         <Links />
         <SubmitButton />
+        
       </div>
       <div className="characterSheet">
-        <div className="firstColumnOfSheet">
           <CharacterPicture />
           <CharacterName />
           <Abilities />
           <SavingThrows />
           <Skills />
-        </div>
-        <div className="secondColumnOfSheet">
-          <Header classAndLevel={classAndLevel} />
+          <Header />
           <ArmorAndHealth />
           <HitDice />
           <DeathSaves />
           <Passives />
           <AttacksAndSpellcasting />
-        </div>
-        <div className="thirdColumnOfSheet">
           <ProficienciesAndLanguages />
           <FeaturesAndTraits />
           <Currency />
           <Notes notes="test" />
-        </div>
       </div>
     </>
   );

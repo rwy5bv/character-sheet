@@ -1,9 +1,8 @@
-import "./Notes.css";
 import React, { useState } from "react";
-
-export function Notes({id, onChildData}) {
+import "./Proficiencies.css";
+export function Proficiencies({ id, onChildData }) {
   const [values, setValues] = useState({
-    notes: ''
+    proficiencies: ''
   });
 
   function handleInputChange(event) {
@@ -13,24 +12,22 @@ export function Notes({id, onChildData}) {
       [name]: value,
     }));
   }
-  
+
   React.useEffect(() => {
     onChildData(id, values);
   }, [id, values, onChildData]);
 
   return (
-    <div className="notes">
-      <h2> Notes </h2>
-      <form>
-        <textarea 
-        rows="10"
+    <div className="proficiencies">
+      <h2> Proficiencies </h2>
+      <textarea
+        rows="5"
         cols="30"
-        placeholder="Write Notes Here"
-        name="notes"
-        value={values.notes} 
+        placeholder="Proficiencies"
+        name="proficiencies"
+        value={values.proficiencies}
         onChange={handleInputChange}
-          />
-      </form>
+      />
     </div>
   );
 

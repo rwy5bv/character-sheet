@@ -1,26 +1,51 @@
-export function HitDice({ d6Current, d6Max, d8Current, d8Max, d10Current, d10Max, d12Current, d12Max }) {
+import React, { useState } from "react";
+import "./HitDice.css";
+export function HitDice({id, onChildData}) {
+  const [values, setValues] = useState({
+    d6Max: '',
+    d6Current:'',
+    d8Max:'',
+    d8Current:'',
+    d10Max: '',
+    d10Current: '',
+    d12Max: '',
+    d12Current: ''
+  });
+
+  function handleInputChange(event){
+    const {name, value} = event.target;
+    setValues(prevValue => ({
+      ...prevValue,
+      [name]: value,
+    }));
+  }
+
+  React.useEffect(() => {
+    onChildData(id, values);
+  }, [id, values, onChildData]);
+
   return (
     <div className="hitDice">
        <table>
       <tr className="form-row">
-        <td><input type="text" placeholder="Max" value={d6Max} /></td>
+        <td><input type="text" placeholder="Max" value={values.d6Max} name = "d6Max" onChange = {handleInputChange}/></td>
         <td><p>d6</p></td>
-        <td><input type="text" placeholder="Current" value={d6Current} /></td>
+        <td><input type="text" placeholder="Current" value={values.d6Current} name = "d6Max" onChange = {handleInputChange} /></td>
       </tr>
       <tr className="form-row">
-        <td><input type="text" placeholder="Max" value={d8Max} /></td>
+        <td><input type="text" placeholder="Max" value={values.d8Max} name = "d8Max" onChange = {handleInputChange} /></td>
         <td><p>d8</p></td>
-        <td><input type="text" placeholder="Current" value={d8Current} /></td>
+        <td><input type="text" placeholder="Current" value={values.d8Current} name = "d8Current" onChange = {handleInputChange} /></td>
       </tr>
       <tr className="form-row">
-        <td><input type="text" placeholder="Max" value={d10Max} /></td>
+        <td><input type="text" placeholder="Max" value={values.d10Max} name = "d10Max" onChange = {handleInputChange} /></td>
         <td><p>d10</p></td>
-        <td><input type="text" placeholder="Current" value={d10Current} /></td>
+        <td><input type="text" placeholder="Current" value={values.d10Current} name = "d10Current" onChange = {handleInputChange} /></td>
       </tr>
       <tr className="form-row">
-        <td><input type="text" placeholder="Max" value={d12Max} /></td>
+        <td><input type="text" placeholder="Max" value={values.d12Max} name = "d12Max" onChange = {handleInputChange} /></td>
         <td><p>d12</p></td>
-        <td><input type="text" placeholder="Current" value={d12Current} /></td>
+        <td><input type="text" placeholder="Current" value={values.d12Current} name = "d12Current" onChange = {handleInputChange} /></td>
       </tr>
     </table>
     </div>

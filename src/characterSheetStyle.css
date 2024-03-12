@@ -6,7 +6,7 @@
 }
 *, *::before, *::after {
     box-sizing: border-box;
-  }
+}
 
 body {
     width: 100vw;
@@ -20,14 +20,6 @@ body {
 }
 
 .characterSheet {
-    /*margin: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    max-width: 1400px;
-
-    background-color: crimson;*/
     border: solid;
     background-color: rgba(255, 251, 251, 0.63);
     display: grid;
@@ -45,33 +37,6 @@ body {
     justify-content: center;
 }
 
-/*Changing to grid layout, relic of flexbox days */
-/*
-.firstColumnOfSheet {
-    grid-column: 1/2;
-    display: grid;
-    grid-row: 1/2;
-    display: flex;
-    flex-direction: column; 
-    background-color: rgb(162, 173, 173);
-}
-
-.secondColumnOfSheet {
-    grid-column: 2/3;
-    grid-row: 1/2;
-    display: flex;
-    flex-direction: column; 
-    background-color: grey;
-}
-
-.thirdColumnOfSheet {
-    grid-column: 3/4;
-    grid-row: 1/2;
-    display: flex;
-    flex-direction: column; 
-    background-color: rgba(126, 134, 131, 0.587);
-}
-*/
 .characterPicture {
     grid-column: 1/2;
     grid-row: 1/3;
@@ -125,14 +90,24 @@ body {
     grid-row: 5/8
 }
 
-.proficienciesAndLanguages {
+.proficiencies {
     grid-column: 4/5;
-    grid-row: 1/3;
+    grid-row: 1/2;
 }
 
-.featuresAndTraits {
+.languages {
     grid-column: 4/5;
-    grid-row: 3/5;
+    grid-row: 2/3;
+}
+
+.features {
+    grid-column: 4/5;
+    grid-row: 3/4;
+}
+
+.traits {
+    grid-column: 4/5;
+    grid-row: 4/5;
 }
 
 .currency {

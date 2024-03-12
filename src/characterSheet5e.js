@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState , useCallback} from 'react';
 import axios from 'axios';
 import './characterSheetStyle.css';
 import { CharacterName } from './components/CharacterName';
@@ -9,8 +9,10 @@ import { Passives } from './components/Passives';
 import { HitDice } from './components/HitDice';
 import { DeathSaves } from './components/DeathSaves';
 import { AttacksAndSpellcasting } from './components/AttacksAndSpellcasting';
-import { FeaturesAndTraits } from './components/FeaturesAndTraits';
-import { ProficienciesAndLanguages } from './components/ProficienciesAndLanguages';
+import { Features } from './components/Features';
+import { Traits } from './components/Traits';
+import { Proficiencies } from './components/Proficiencies';
+import { Languages } from './components/Languages';
 import { Notes } from './components/Notes';
 import { Currency } from './components/Currency';
 import { Abilities } from './components/Abilities';
@@ -22,18 +24,20 @@ import { CharacterPicture } from './components/CharacterPicture';
 
 function CharacterSheet5e() {
   const [formData, setFormData] = useState({});
-
-  function handleInputChange(childId, inputValue){
-    setFormData(prevData => ({
+  //Uses the useCallback hook so that it doesn't trigger an infinite re-render loop
+  //Basically just appends the data onto formData
+  const handleInputChange = useCallback((childId, inputValue) => {
+    setFormData((prevData) => ({
       ...prevData,
       [childId]: inputValue,
     }));
   
-  }
-
-  async function submitCharacterSheetData(postData) {
+  }, []);
+  //Send POST Request w/ characterSheetData
+  async function submitCharacterSheetData(characterSheetData) {
+    console.log(characterSheetData);
     try {
-      const { data } = await axios.post('https://api.example.com/post-endpoint', postData)
+      const { data } = await axios.post('https://api.example.com/post-endpoint', characterSheetData)
       console.log(data);
     } catch (error) {
       console.error(error)
@@ -42,9 +46,9 @@ function CharacterSheet5e() {
   
   }
   
-  function SubmitButton({postData}) {
+  function SubmitButton() {
     return (<div className="submitButton">
-      <button onClick={async () => submitCharacterSheetData(postData)}>
+      <button onClick={async () => submitCharacterSheetData(formData)}>
         Upload
       </button >
     </div>
@@ -60,21 +64,23 @@ function CharacterSheet5e() {
         
       </div>
       <div className="characterSheet">
-          <CharacterPicture />
-          <CharacterName />
-          <Abilities />
-          <SavingThrows />
-          <Skills />
-          <Header />
-          <ArmorAndHealth />
-          <HitDice />
-          <DeathSaves />
-          <Passives />
-          <AttacksAndSpellcasting />
-          <ProficienciesAndLanguages />
-          <FeaturesAndTraits />
-          <Currency />
-          <Notes notes="test" />
+          <CharacterPicture id="characterPicture" onChildData={handleInputChange} />
+          <CharacterName id="characterName" onChildData={handleInputChange} />
+          <Abilities id="abilities" onChildData={handleInputChange} />
+          <SavingThrows id="savingThrows" onChildData={handleInputChange} />
+          <Skills id="skills" onChildData={handleInputChange} />
+          <Header id="header" onChildData={handleInputChange} />
+          <ArmorAndHealth id="armorAndHealth" onChildData={handleInputChange} />
+          <HitDice id="hitDice" onChildData={handleInputChange} />
+          <DeathSaves id="deathSaves" onChildData={handleInputChange} />
+          <Passives id="passives" onChildData={handleInputChange} />
+          <AttacksAndSpellcasting id="attacksAndSpellcasting" onChildData={handleInputChange} />
+          <Proficiencies id="proficiencies" onChildData={handleInputChange} />
+          <Languages id="languages" onChildData={handleInputChange} />
+          <Features id="features" onChildData={handleInputChange} />
+          <Traits id="traits" onChildData={handleInputChange} />
+          <Currency id="currency" onChildData={handleInputChange} />
+          <Notes id="notes" onChildData={handleInputChange}  />
       </div>
     </>
   );

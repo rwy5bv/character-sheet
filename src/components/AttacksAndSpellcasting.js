@@ -1,16 +1,30 @@
 import "./AttacksAndSpellcasting.css";
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-export function AttacksAndSpellcasting({ name, attackModifier, damage, range, ammo, used }) {
-  const columnLabels = ["Name", "Attack Modifier/DC", "Damage", "Range", "Ammo"];
+export function AttacksAndSpellcasting({id, onChildData}) {
+  const columnLabels = ["Name", "Attack Modifier or DC", "Damage", "Range", "Ammo"];
   const [rowData, setRowData] = useState([{}]);
 
-  const handleInputChange = (index, column, value) => {
-    // Update the state with the new value for the specified row and column
+  const [values, setValues] = useState({
+  });
+
+  const handleInputChange = (index, column, target) => {
     const updatedRowData = [...rowData];
-    updatedRowData[index][column] = value;
+    updatedRowData[index][column] = target.value;
     setRowData(updatedRowData);
+
+
+    const {name, value} = target;
+    setValues(prevValue => ({
+      ...prevValue,
+      [name]: value
+    }));
   };
+
+
+  React.useEffect(() => {
+    onChildData(id, values);
+  }, [id, values, onChildData]);
 
   const renderHeader = () => {
     return (
@@ -28,7 +42,8 @@ export function AttacksAndSpellcasting({ name, attackModifier, damage, range, am
           <td key={columnIndex}>
             <input type="text"
               value={row[column] || ''}
-              onChange={(e) => handleInputChange(rowIndex, column, e.target.value)} />
+              name= {String(columnLabels[columnIndex].replace(/\s/g, "").toLowerCase() + rowIndex)}
+              onChange={(e) => handleInputChange(rowIndex, column, e.target)} />
           </td>
         ))}
       </tr>

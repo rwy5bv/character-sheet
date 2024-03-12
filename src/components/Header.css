@@ -1,0 +1,7 @@
+.header .classLevelColumn input[type="text"] {
+    width: 25%; 
+    box-sizing: border-box;
+}
+.header .classLevelColumn {
+    display: flex;
+}

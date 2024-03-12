@@ -51,7 +51,7 @@ export function AttacksAndSpellcasting({id, onChildData}) {
   };
 
   const handleAddRow = () => {
-    setRowData([...rowData, {}]); // Add a new row with empty values
+    setRowData([...rowData, {}]);
   };
 
   return (

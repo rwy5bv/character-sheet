@@ -42,8 +42,6 @@ function CharacterSheet5e() {
     } catch (error) {
       console.error(error)
     }
-  
-  
   }
   
   function SubmitButton() {
@@ -54,6 +52,23 @@ function CharacterSheet5e() {
     </div>
     );
   };
+
+  /*function RenderSheet({pageNumber}){
+    switch(pageNumber) {
+      case (1):
+        return(
+
+        );
+      case (2):
+        return(
+
+        );
+      case (3):
+        return(
+
+        );
+    }
+  }*/
 
   return (
     <>

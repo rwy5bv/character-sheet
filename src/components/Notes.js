@@ -1,22 +1,10 @@
 import "./Notes.css";
-import React, { useState } from "react";
 
-export function Notes({id, onChildData}) {
-  const [values, setValues] = useState({
-    notes: ''
-  });
-
+export function Notes({id, onChildData, formData}) {
   function handleInputChange(event) {
     const { name, value } = event.target;
-    setValues(prevValue => ({
-      ...prevValue,
-      [name]: value,
-    }));
-  }
-  
-  React.useEffect(() => {
-    onChildData(id, values);
-  }, [id, values, onChildData]);
+    onChildData(id, name, value);
+  };
 
   return (
     <div className="notes">
@@ -27,7 +15,7 @@ export function Notes({id, onChildData}) {
         cols="30"
         placeholder="Write Notes Here"
         name="notes"
-        value={values.notes} 
+        value={formData?.notes?.notes||""} 
         onChange={handleInputChange}
           />
       </form>

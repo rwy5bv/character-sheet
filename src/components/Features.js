@@ -1,25 +1,12 @@
-import React, { useState } from "react";
+//import React from "react";
 import "./Features.css";
-
-
-
-export function Features({id, onChildData}) {
-
-  const [values, setValues] = useState({
-    features: ''
-  });
+export function Features({id, onChildData, formData}) {
 
   function handleInputChange(event) {
     const { name, value } = event.target;
-    setValues(prevValue => ({
-      ...prevValue,
-      [name]: value,
-    }));
-  }
-  
-  React.useEffect(() => {
-    onChildData(id, values);
-  }, [id, values, onChildData]);
+    onChildData(id, name, value);
+  };
+
 
   return (
     <div className="features">
@@ -29,7 +16,7 @@ export function Features({id, onChildData}) {
         cols="30"
         placeholder="Features"
         name="features"
-        value={values.features} 
+        value={formData?.features?.features||""} 
         onChange={handleInputChange}
         />
     </div>

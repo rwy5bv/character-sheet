@@ -1,34 +1,15 @@
 import "./Passives.css";
-import React, { useState } from "react";
 
-export function Passives({ id, onChildData }) {
-  const [values, setValues] = useState({
-    inspiration: false,
-    proficiencyBonus: '',
-    initiative: '',
-    speed: '',
-    vision: ''
-  });
+export function Passives({ id, onChildData, formData }) {
+  function handleInputChangeCheckbox(event) {
+    const { name, checked } = event.target;
+    onChildData(id, name, checked);
+  };
 
   function handleInputChange(event) {
     const { name, value } = event.target;
-    setValues(prevValue => ({
-      ...prevValue,
-      [name]: value,
-    }));
-  }
-
-  function handleInputChangeCheckbox(event) {
-    const { name, checked } = event.target;
-    setValues(prevValue => ({
-      ...prevValue,
-      [name]: checked,
-    }));
-  }
-
-  React.useEffect(() => {
-    onChildData(id, values);
-  }, [id, values, onChildData]);
+    onChildData(id, name, value);
+  };
 
   return (
     <div className="passives">
@@ -38,7 +19,7 @@ export function Passives({ id, onChildData }) {
             Inspiration
           </td>
           <td>
-            <input type="checkbox" checked={values.inspiration} name="inspiration" onChange={handleInputChangeCheckbox}></input>
+            <input type="checkbox" checked={formData?.passives?.inspiration||false} name="inspiration" onChange={handleInputChangeCheckbox}></input>
           </td>
         </tr>
         <tr>
@@ -46,7 +27,7 @@ export function Passives({ id, onChildData }) {
             Proficiency Bonus
           </td>
           <td>
-            <input type="text" name="proficiencyBonus" onChange={handleInputChange} value={values.proficiencyBonus} />
+            <input type="number" name="proficiencyBonus" placeholder="0" onChange={handleInputChange} value={formData?.passives?.proficiencyBonus||""} />
           </td>
         </tr>
         <tr>
@@ -54,7 +35,7 @@ export function Passives({ id, onChildData }) {
             <label> Initiative </label>
           </td>
           <td>
-            <input type="text" name="initiative" onChange={handleInputChange} value={values.initiative} />
+            <input type="number" name="initiative" placeholder="0" onChange={handleInputChange} value={formData?.passives?.initiative||""} />
           </td>
         </tr>
         <tr>
@@ -62,7 +43,7 @@ export function Passives({ id, onChildData }) {
             <label> Speed </label>
           </td>
           <td>
-            <input type="text" name="speed" onChange={handleInputChange} value={values.speed}></input>
+            <input type="text" name="speed" placeholder="30 ft. Walk" onChange={handleInputChange} value={formData?.passives?.speed||""}></input>
           </td>
         </tr>
         <tr>
@@ -70,7 +51,7 @@ export function Passives({ id, onChildData }) {
             <label> Vision </label>
           </td>
           <td>
-            <input type="text" name="vision" onChange={handleInputChange} value={values.vision}></input>
+            <input type="text" name="vision" onChange={handleInputChange} value={formData?.passives?.vision||""}></input>
           </td>
         </tr>
       </table>

@@ -1,12 +1,10 @@
 import "./AttacksAndSpellcasting.css";
-import React, { useState } from 'react';
 
-export function AttacksAndSpellcasting({id, onChildData}) {
+export function AttacksAndSpellcasting({id, onChildData, rowData, setRowData}) {
   const columnLabels = ["Name", "Attack Modifier or DC", "Damage", "Range", "Ammo"];
-  const [rowData, setRowData] = useState([{}]);
 
-  const [values, setValues] = useState({
-  });
+
+  //const [values, setValues] = useState({});
 
   const handleInputChange = (index, column, target) => {
     const updatedRowData = [...rowData];
@@ -15,16 +13,12 @@ export function AttacksAndSpellcasting({id, onChildData}) {
 
 
     const {name, value} = target;
-    setValues(prevValue => ({
+    /*setValues(prevValue => ({
       ...prevValue,
       [name]: value
-    }));
+    }));*/
+    onChildData(id, name, value);
   };
-
-
-  React.useEffect(() => {
-    onChildData(id, values);
-  }, [id, values, onChildData]);
 
   const renderHeader = () => {
     return (

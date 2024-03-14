@@ -1,21 +1,10 @@
 import "./Traits.css";
-import React, { useState } from "react";
-export function Traits({ id, onChildData }) {
-    const [values, setValues] = useState({
-        traits: ''
-    });
+export function Traits({ id, onChildData, formData}) {
 
     function handleInputChange(event) {
         const { name, value } = event.target;
-        setValues(prevValue => ({
-            ...prevValue,
-            [name]: value,
-        }));
-    }
-
-    React.useEffect(() => {
-        onChildData(id, values);
-    }, [id, values, onChildData]);
+        onChildData(id, name, value);
+    };
 
     return (
         <div className="traits">
@@ -26,7 +15,7 @@ export function Traits({ id, onChildData }) {
                     rows="5"
                     cols="30"
                     name="traits"
-                    value={values.traits}
+                    value={formData?.traits?.traits || ""}
                     onChange={handleInputChange} />
             </form>
         </div>

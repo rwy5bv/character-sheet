@@ -1,21 +1,10 @@
 import React, { useState } from "react";
 import "./Proficiencies.css";
-export function Proficiencies({ id, onChildData }) {
-  const [values, setValues] = useState({
-    proficiencies: ''
-  });
-
+export function Proficiencies({ id, onChildData, formData }) {
   function handleInputChange(event) {
     const { name, value } = event.target;
-    setValues(prevValue => ({
-      ...prevValue,
-      [name]: value,
-    }));
-  }
-
-  React.useEffect(() => {
-    onChildData(id, values);
-  }, [id, values, onChildData]);
+    onChildData(id, name, value);
+  };
 
   return (
     <div className="proficiencies">
@@ -25,7 +14,7 @@ export function Proficiencies({ id, onChildData }) {
         cols="30"
         placeholder="Proficiencies"
         name="proficiencies"
-        value={values.proficiencies}
+        value={formData?.proficiencies?.proficiencies||""}
         onChange={handleInputChange}
       />
     </div>

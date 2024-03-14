@@ -1,22 +1,10 @@
-import React, { useState } from "react";
 import "./Languages.css";
-export function Languages({id, onChildData}) {
+export function Languages({id, onChildData, formData}) {
 
-    const [values, setValues] = useState({
-        languages: ''
-      });
-    
-      function handleInputChange(event) {
-        const { name, value } = event.target;
-        setValues(prevValue => ({
-          ...prevValue,
-          [name]: value,
-        }));
-      }
-      
-      React.useEffect(() => {
-        onChildData(id, values);
-      }, [id, values, onChildData]);
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    onChildData(id, name, value);
+  };
 
     return (
         <div className="languages">
@@ -26,7 +14,7 @@ export function Languages({id, onChildData}) {
                 cols="30"
                 placeholder="Languages"
                 name="languages"
-                value={values.languages} 
+                value={formData?.languages?.languages||""} 
                 onChange={handleInputChange} />
         </div>
 

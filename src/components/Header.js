@@ -1,27 +1,9 @@
-import React, { useState } from "react";
 import "./Header.css";
-export function Header({id, onChildData}) {
-  const [values, setValues] = useState({
-    class: '',
-    level: '',
-    background: '',
-    playerName: '',
-    race: '',
-    alignment: '',
-    experiencePoints: ''
-  });
-
-  function handleInputChange(event){
-    const {name, value} = event.target;
-    setValues(prevValue => ({
-      ...prevValue,
-      [name]: value,
-    }));
-  }
-
-  React.useEffect(() => {
-    onChildData(id, values);
-  }, [id, values, onChildData]);
+export function Header({id, onChildData, formData}) {
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    onChildData(id, name, value);
+  };
 
 
   return (
@@ -34,11 +16,11 @@ export function Header({id, onChildData}) {
         </tr>
         <tr>
           <td className="classLevelColumn">
-            <input type="text" value={values.class} name = "class" onChange = {handleInputChange}/>
-            <input type="text" value={values.level} name = "level" onChange = {handleInputChange}/>
+            <input type="text" value={formData?.header?.class||""} placeholder="Fighter" name = "class" onChange = {handleInputChange}/>
+            <input type="number" value={formData?.header?.level||""} placeholder="8" name = "level" onChange = {handleInputChange}/>
           </td>
-          <td><input type="text" value={values.background} name = "background" onChange = {handleInputChange}/></td>
-          <td><input type="text" value={values.playerName} name = "playerName" onChange = {handleInputChange} /></td>
+          <td><input type="text" value={formData?.header?.background||""} placeholder="Acolyte" name = "background" onChange = {handleInputChange}/></td>
+          <td><input type="text" value={formData?.header?.playerName||""} placeholder="FirstName LastName" name = "playerName" onChange = {handleInputChange} /></td>
         </tr>
         <tr>
           <th>Race</th>
@@ -46,9 +28,9 @@ export function Header({id, onChildData}) {
           <th>Experience Points</th>
         </tr>
         <tr>
-          <td><input type="text" value={values.race} name = "race" onChange = {handleInputChange} /></td>
-          <td><input type="text" value={values.alignment} name = "alignment" onChange = {handleInputChange} /></td>
-          <td><input type="text" value={values.experiencePoints} name="experiencePoints" onChange={handleInputChange} /></td>
+          <td><input type="text" value={formData?.header?.race||""} placeholder="Human" name = "race" onChange = {handleInputChange} /></td>
+          <td><input type="text" value={formData?.header?.alignment||""} placeholder="True Neutral" name = "alignment" onChange = {handleInputChange} /></td>
+          <td><input type="number" value={formData?.header?.experiencePoints||""} placeholder="0"  name="experiencePoints" onChange={handleInputChange} /></td>
         </tr>
       </table>
     </div>

@@ -1,11 +1,6 @@
 import "./CharacterPicture.css";
-import React, {useState} from "react";
-import myImage from "../images/placeholderCharacter.webp";
-export function CharacterPicture({id, onChildData}){
-    const [values, setValues] = useState({
-        characterImageURL: myImage,
-        imageData: null
-    });
+
+export function CharacterPicture({id, onChildData, formData, characterImageURL, setCharacterImageURL}){
 
     function handleInputChange(event) {
         if(!event.target.files[0]){
@@ -21,26 +16,20 @@ export function CharacterPicture({id, onChildData}){
         debugger;
 
         reader.onloadend = () => {
-            setValues({
-              characterImageURL: URL.createObjectURL(file),
-              imageData: reader.result, 
-            });
+            onChildData(id, event.target.name, reader.result);
+            setCharacterImageURL(URL.createObjectURL(file));
           };
         reader.readAsDataURL(file);
     }
 
-    React.useEffect(() => {
-        onChildData(id, values);
-      }, [id, values, onChildData]);
-
     return(<div className="characterPicture">
         <h2> Upload Image </h2>
-        <img src={values.characterImageURL} alt="picture of character">
+        <img src={characterImageURL} alt="character">
         </img>
         <br />
         <label>Accepted Image Types: jpg, jpeg, png, webp</label>
         <br />
-        <input type="file" accept=".jpg,.jpeg,.png,.webp" onChange={handleInputChange} />
+        <input type="file" accept=".jpg,.jpeg,.png,.webp" name="characterPicture" onChange={handleInputChange} />
     </div>
 
     );

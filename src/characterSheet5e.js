@@ -1,6 +1,7 @@
-import { useState , useCallback} from 'react';
+import { useState, useCallback, useRef } from 'react';
 import axios from 'axios';
 import './characterSheetStyle.css';
+import defaultPortraitURL from "./images/placeholderCharacter.webp";
 import { CharacterName } from './components/CharacterName';
 import { SavingThrows } from './components/SavingThrows';
 import { Skills } from './components/Skills';
@@ -21,18 +22,58 @@ import { TitleBar } from './components/TitleBar';
 import { Links } from './components/Links';
 import { CharacterPicture } from './components/CharacterPicture';
 
+//Categories for tabs of character sheet
+const SHEET_CATEGORIES = {
+  character: 0,
+  abilities: 1,
+  combat: 2,
+};
+
+function SheetPagesNavigator({ setSheetPage }) {
+  return (<div className="sheetPagesNavigator">
+    <button onClick={() => setSheetPage(SHEET_CATEGORIES.character)}>
+      Character
+    </button >
+    <button onClick={() => setSheetPage(SHEET_CATEGORIES.abilities)}>
+      Abilities
+    </button >
+    <button onClick={() => setSheetPage(SHEET_CATEGORIES.combat)}>
+      Combat
+    </button >
+  </div>);
+}
 
 function CharacterSheet5e() {
   const [formData, setFormData] = useState({});
-  //Uses the useCallback hook so that it doesn't trigger an infinite re-render loop
-  //Basically just appends the data onto formData
-  const handleInputChange = useCallback((childId, inputValue) => {
+  const [sheetPage, setSheetPage] = useState(SHEET_CATEGORIES.character);
+
+
+  //States that do not need to be returned in POST request
+  //_________________________________________________________
+  //for Dynamic table in AttacksAndSpellcasting only
+  //TODO: Move within AttacksAndSpellcasting
+  const [rowData, setRowData] = useState([{}]);
+
+  //image URL for CharacterPicture Component
+  //TODO: Move within CharacterPicture
+  const [characterImageURL, setCharacterImageURL] = useState(defaultPortraitURL);
+
+
+  //Basically just appends the data onto formData in format
+  //{childId.name: inputValue}
+  //Ergo access Strength score by doing formData.Abilities.Strength
+  const handleInputChange = (childId, name, inputValue) => {
+    debugger;
     setFormData((prevData) => ({
       ...prevData,
-      [childId]: inputValue,
+      [childId]: {
+        ...prevData[childId],
+        [name]: inputValue
+      },
     }));
-  
-  }, []);
+    debugger;
+  };
+
   //Send POST Request w/ characterSheetData
   async function submitCharacterSheetData(characterSheetData) {
     console.log(characterSheetData);
@@ -43,62 +84,87 @@ function CharacterSheet5e() {
       console.error(error)
     }
   }
-  
-  function SubmitButton() {
-    return (<div className="submitButton">
-      <button onClick={async () => submitCharacterSheetData(formData)}>
-        Upload
-      </button >
-    </div>
-    );
-  };
 
-  /*function RenderSheet({pageNumber}){
-    switch(pageNumber) {
-      case (1):
-        return(
 
-        );
-      case (2):
-        return(
 
-        );
-      case (3):
-        return(
+  //Rendering the sheet page in a separate component causes an infinite rerender loop, 
+  //ergo no component declaration
+  switch (sheetPage) {
+    case (SHEET_CATEGORIES.character):
+      return (
+        <>
+          <div className="topOfSheet">
+            <TitleBar />
+            <div className="submitButton">
+              <button onClick={async () => submitCharacterSheetData(formData)}>
+                Upload
+              </button >
+            </div>
+            <Links />
+            <SheetPagesNavigator setSheetPage={setSheetPage} />
+          </div>
+          <div className="characterSheet">
+            <CharacterName id="characterName" onChildData={handleInputChange} formData={formData} />
+            <CharacterPicture id="characterPicture" onChildData={handleInputChange} formData={formData} characterImageURL={characterImageURL} setCharacterImageURL={setCharacterImageURL} />
+            <Traits id="traits" onChildData={handleInputChange} formData={formData} />
+            <Currency id="currency" onChildData={handleInputChange} formData={formData} />
+            <Features id="features" onChildData={handleInputChange} formData={formData}/>
+            <Header id="header" onChildData={handleInputChange} formData={formData}/>
+            <Proficiencies id="proficiencies" onChildData={handleInputChange} formData={formData}/>
+            <Passives id="passives" onChildData={handleInputChange} formData={formData}/>
+            <HitDice id="hitDice" onChildData={handleInputChange} formData={formData}/>
+            <Languages id="languages" onChildData={handleInputChange} formData={formData}/>
+            <Notes id="notes" onChildData={handleInputChange} formData={formData}/>
+          </div>
+        </>
 
-        );
-    }
-  }*/
+      );
 
-  return (
-    <>
-      <div className="topOfSheet">
-        <TitleBar />
-        <Links />
-        <SubmitButton />
-        
-      </div>
-      <div className="characterSheet">
-          <CharacterPicture id="characterPicture" onChildData={handleInputChange} />
-          <CharacterName id="characterName" onChildData={handleInputChange} />
-          <Abilities id="abilities" onChildData={handleInputChange} />
-          <SavingThrows id="savingThrows" onChildData={handleInputChange} />
-          <Skills id="skills" onChildData={handleInputChange} />
-          <Header id="header" onChildData={handleInputChange} />
-          <ArmorAndHealth id="armorAndHealth" onChildData={handleInputChange} />
-          <HitDice id="hitDice" onChildData={handleInputChange} />
-          <DeathSaves id="deathSaves" onChildData={handleInputChange} />
-          <Passives id="passives" onChildData={handleInputChange} />
-          <AttacksAndSpellcasting id="attacksAndSpellcasting" onChildData={handleInputChange} />
-          <Proficiencies id="proficiencies" onChildData={handleInputChange} />
-          <Languages id="languages" onChildData={handleInputChange} />
-          <Features id="features" onChildData={handleInputChange} />
-          <Traits id="traits" onChildData={handleInputChange} />
-          <Currency id="currency" onChildData={handleInputChange} />
-          <Notes id="notes" onChildData={handleInputChange}  />
-      </div>
-    </>
-  );
+    case (SHEET_CATEGORIES.abilities):
+      return (
+        <>
+          <div className="topOfSheet">
+            <TitleBar />
+            <div className="submitButton">
+              <button onClick={async () => submitCharacterSheetData(formData)}>
+                Upload
+              </button >
+            </div>
+            <Links />
+            <SheetPagesNavigator setSheetPage={setSheetPage} />
+          </div>
+          <div className="characterSheet">
+            <Abilities id="abilities" onChildData={handleInputChange} formData={formData} />
+            <SavingThrows id="savingThrows" onChildData={handleInputChange} formData={formData}/>
+            <Skills id="skills" onChildData={handleInputChange} formData={formData}/>
+          </div>
+        </>
+      );
+      
+    case (SHEET_CATEGORIES.combat):
+      return (
+        <>
+          <div className="topOfSheet">
+            <TitleBar />
+            <div className="submitButton">
+              <button onClick={async () => submitCharacterSheetData(formData)}>
+                Upload
+              </button >
+            </div>
+            <Links />
+            <SheetPagesNavigator setSheetPage={setSheetPage} />
+          </div>
+          <div className="characterSheet">
+            <ArmorAndHealth id="armorAndHealth" onChildData={handleInputChange} formData={formData} />
+            <AttacksAndSpellcasting id="attacksAndSpellcasting" onChildData={handleInputChange} rowData={rowData} setRowData={setRowData} />
+            <DeathSaves id="deathSaves" onChildData={handleInputChange} formData={formData}/>
+          </div>
+        </>
+      );
+
+    default:
+      Error("Unable to render character sheet, invalid sheet page.");
+  }
 }
 
 export default CharacterSheet5e;

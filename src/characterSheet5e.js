@@ -21,6 +21,7 @@ import { Header } from './components/Header';
 import { TitleBar } from './components/TitleBar';
 import { Links } from './components/Links';
 import { CharacterPicture } from './components/CharacterPicture';
+import {CharacterSheetCanvas} from './components/CharacterSheetCanvas';
 
 //Categories for tabs of character sheet
 const SHEET_CATEGORIES = {
@@ -51,11 +52,9 @@ function CharacterSheet5e() {
   //States that do not need to be returned in POST request
   //_________________________________________________________
   //for Dynamic table in AttacksAndSpellcasting only
-  //TODO: Move within AttacksAndSpellcasting
   const [rowData, setRowData] = useState([{}]);
 
   //image URL for CharacterPicture Component
-  //TODO: Move within CharacterPicture
   const [characterImageURL, setCharacterImageURL] = useState(defaultPortraitURL);
 
 

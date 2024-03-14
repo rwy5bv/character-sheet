@@ -15,16 +15,14 @@ body {
     background-repeat: repeat;
 }
 
-.submitButton button {
-    background-color: lightgreen;
-}
+
 
 .characterSheet {
     border: solid;
     background-color: rgba(255, 251, 251, 0.63);
     display: grid;
     grid-template-columns: 1.5fr 1fr  1fr 1.5fr;
-    grid-template-rows: repeat(14, 160px);
+    grid-template-rows: repeat(6, 160px);
     justify-items: center;
     align-items: center;
 
@@ -36,6 +34,28 @@ body {
     text-align: center;
     justify-content: center;
 }
+/*Global Stylings, can be overwritten in child component CSS files*/
+input[type=text] {
+    background-color: transparent;
+}
+
+input[type=number] {
+    background-color: transparent;
+}
+
+
+/*CharacterSheet 5e Non-Tab Component Stylings*/
+.submitButton button {
+    background-color: lightgreen;
+}
+
+/*.characterSheetCanvas {
+    background-color: rgba(128, 128, 128, 0.273);
+    width: 90vw;
+    height: 100vh;
+    grid-column: 1/5;
+    grid-row: 1/7;
+}*/
 
 /*Tab 1, Character*/
 .characterPicture {

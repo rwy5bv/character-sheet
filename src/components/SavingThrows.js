@@ -55,32 +55,32 @@ export function SavingThrows({ id, onChildData, formData }) {
         <tr>
           <td><button onClick={() => handleProficiencyChange("strProficiencyLevel")} ><ProficiencyIcon proficiencyLevel={formData?.savingThrows?.strProficiencyLevel||PROFICIENCY_LEVELS.none} /></button></td>
           <td><label> Strength </label></td>
-          <td><input type="number" placeholder="+5" name="strSave" value={formData?.savingThrows?.strSave||""} onChange={handleInputChange} /></td>
+          <td><input type="number" placeholder="+0" name="strSave" value={formData?.savingThrows?.strSave||""} onChange={handleInputChange} /></td>
         </tr>
         <tr>
           <td><button onClick={() => handleProficiencyChange("dexProficiencyLevel")} ><ProficiencyIcon proficiencyLevel={formData?.savingThrows?.dexProficiencyLevel||PROFICIENCY_LEVELS.none} /></button></td>
           <td><label> Dexterity </label></td>
-          <td><input type="number" placeholder="+5" name="dexSave" value={formData?.savingThrows?.dexSave||""} onChange={handleInputChange} /></td>
+          <td><input type="number" placeholder="+0" name="dexSave" value={formData?.savingThrows?.dexSave||""} onChange={handleInputChange} /></td>
         </tr>
         <tr>
           <td><button onClick={() => handleProficiencyChange("conProficiencyLevel")} ><ProficiencyIcon proficiencyLevel={formData?.savingThrows?.conProficiencyLevel||PROFICIENCY_LEVELS.none} /></button></td>
           <td><label> Constitution </label></td>
-          <td><input type="number" placeholder="+5" name="conSave" value={formData?.savingThrows?.conSave||""} onChange={handleInputChange} /></td>
+          <td><input type="number" placeholder="+0" name="conSave" value={formData?.savingThrows?.conSave||""} onChange={handleInputChange} /></td>
         </tr>
         <tr>
           <td><button onClick={() => handleProficiencyChange("intProficiencyLevel")} ><ProficiencyIcon proficiencyLevel={formData?.savingThrows?.intProficiencyLevel||PROFICIENCY_LEVELS.none} /></button></td>
           <td><label> Intelligence </label></td>
-          <td><input type="number" placeholder="+5" name="intSave" value={formData?.savingThrows?.intSave||""} onChange={handleInputChange} /></td>
+          <td><input type="number" placeholder="+0" name="intSave" value={formData?.savingThrows?.intSave||""} onChange={handleInputChange} /></td>
         </tr>
         <tr>
           <td><button onClick={() => handleProficiencyChange("wisProficiencyLevel")} ><ProficiencyIcon proficiencyLevel={formData?.savingThrows?.wisProficiencyLevel||PROFICIENCY_LEVELS.none} /></button></td>
           <td><label> Wisdom </label></td>
-          <td><input type="number" placeholder="+5" name="wisSave" value={formData?.savingThrows?.wisSave||""} onChange={handleInputChange} /></td>
+          <td><input type="number" placeholder="+0" name="wisSave" value={formData?.savingThrows?.wisSave||""} onChange={handleInputChange} /></td>
         </tr>
         <tr>
           <td><button onClick={() => handleProficiencyChange("chaProficiencyLevel")} ><ProficiencyIcon proficiencyLevel={formData?.savingThrows?.chaProficiencyLevel||PROFICIENCY_LEVELS.none} /></button></td>
           <td><label> Charisma </label></td>
-          <td><input type="number" placeholder="+5" name="chaSave" value={formData?.savingThrows?.chaSave||""} onChange={handleInputChange} /></td>
+          <td><input type="number" placeholder="+0" name="chaSave" value={formData?.savingThrows?.chaSave||""} onChange={handleInputChange} /></td>
         </tr>
       </table>
     </div>

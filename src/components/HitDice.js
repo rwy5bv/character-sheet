@@ -11,7 +11,7 @@ export function HitDice({id, onChildData, formData}) {
       <tr className="form-row">
         <td><input type="number" placeholder="Max" value={formData?.hitDice?.d6Max||""} name = "d6Max" onChange = {handleInputChange}/></td>
         <td><p>d6</p></td>
-        <td><input type="number" placeholder="Current" value={formData?.hitDice?.d6Current||""} name = "d6Max" onChange = {handleInputChange} /></td>
+        <td><input type="number" placeholder="Current" value={formData?.hitDice?.d6Current||""} name = "d6Current" onChange = {handleInputChange} /></td>
       </tr>
       <tr className="form-row">
         <td><input type="number" placeholder="Max" value={formData?.hitDice?.d8Max||""} name = "d8Max" onChange = {handleInputChange} /></td>

@@ -16,7 +16,7 @@ export function Header({id, onChildData, formData}) {
         </tr>
         <tr>
           <td className="classLevelColumn">
-            <input type="text" value={formData?.header?.class||""} placeholder="Fighter" name = "class" onChange = {handleInputChange}/>
+            <input type="text" value={formData?.header?.playerClass||""} placeholder="Fighter" name = "playerClass" onChange = {handleInputChange}/>
             <input type="number" value={formData?.header?.level||""} placeholder="8" name = "level" onChange = {handleInputChange}/>
           </td>
           <td><input type="text" value={formData?.header?.background||""} placeholder="Acolyte" name = "background" onChange = {handleInputChange}/></td>

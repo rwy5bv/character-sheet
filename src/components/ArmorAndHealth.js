@@ -11,7 +11,7 @@ export function ArmorAndHealth({id, onChildData, formData}) {
     <table>
       <tr>
         <td><label> AC</label></td>
-        <td><input type="number" value={formData?.armorAndHealth?.AC||""} placeholder="10" name = "AC" onChange = {handleInputChange}/></td>
+        <td><input type="number" value={formData?.armorAndHealth?.armorClass||""} placeholder="10" name = "armorClass" onChange = {handleInputChange}/></td>
       </tr>
       <tr>
         <td><label> Temp HP</label></td>

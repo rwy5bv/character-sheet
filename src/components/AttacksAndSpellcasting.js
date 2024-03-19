@@ -3,9 +3,6 @@ import "./AttacksAndSpellcasting.css";
 export function AttacksAndSpellcasting({id, onChildData, rowData, setRowData}) {
   const columnLabels = ["Name", "Attack Modifier or DC", "Damage", "Range", "Ammo"];
 
-
-  //const [values, setValues] = useState({});
-
   const handleInputChange = (index, column, target) => {
     const updatedRowData = [...rowData];
     updatedRowData[index][column] = target.value;
@@ -13,10 +10,6 @@ export function AttacksAndSpellcasting({id, onChildData, rowData, setRowData}) {
 
 
     const {name, value} = target;
-    /*setValues(prevValue => ({
-      ...prevValue,
-      [name]: value
-    }));*/
     onChildData(id, name, value);
   };
 

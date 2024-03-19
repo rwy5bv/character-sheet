@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef } from 'react';
 import axios from 'axios';
-import './characterSheetStyle.css';
+import './CharacterSheetStyle.css';
 import defaultPortraitURL from "./images/placeholderCharacter.webp";
 import { CharacterName } from './components/CharacterName';
 import { SavingThrows } from './components/SavingThrows';
@@ -77,7 +77,7 @@ function CharacterSheet5e() {
   async function submitCharacterSheetData(characterSheetData) {
     console.log(characterSheetData);
     try {
-      const { data } = await axios.post('https://api.example.com/post-endpoint', characterSheetData)
+      const { data } = await axios.post('http://localhost:8080/upload', characterSheetData)
       console.log(data);
     } catch (error) {
       console.error(error)

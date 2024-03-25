@@ -93,7 +93,6 @@ function CharacterSheet5e() {
       };
     });
   };
-
   //Send POST Request w/ characterSheetData
   async function submitCharacterSheetData(characterSheetData) {
     console.log(characterSheetData);

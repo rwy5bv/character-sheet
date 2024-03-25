@@ -4,7 +4,6 @@ export function AttacksAndSpellcasting({id, onChildData, rowData, setRowData}) {
   const columnLabels = ["Name", "Attack Modifier or DC", "Damage", "Range", "Ammo"];
   //camelcase names which are set in formData
   const propertyNames = ["name", "attackModifierOrDC", "damage", "range", "ammo"];
-  debugger;
   const handleInputChange = (index, column, target) => {
     const updatedRowData = [...rowData];
     updatedRowData[index][column] = target.value;

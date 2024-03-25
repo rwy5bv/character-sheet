@@ -15,15 +15,15 @@ export function ArmorAndHealth({id, onChildData, formData}) {
       </tr>
       <tr>
         <td><label> Temp HP</label></td>
-        <td><input type="number" value={formData?.armorAndHealth?.tempHP||""} placeholder="0" name= "tempHP" onChange = {handleInputChange}/></td>
+        <td><input type="number" value={formData?.armorAndHealth?.tempHitPoints||""} placeholder="0" name= "tempHitPoints" onChange = {handleInputChange}/></td>
       </tr>
       <tr>
         <td><label> Current HP</label></td>
-        <td><input type="number" value={formData?.armorAndHealth?.currentHP||""} placeholder="0" name = "currentHP" onChange = {handleInputChange}/></td>
+        <td><input type="number" value={formData?.armorAndHealth?.currentHitPoints||""} placeholder="0" name = "currentHitPoints" onChange = {handleInputChange}/></td>
       </tr>
       <tr>
         <td><label> Max HP</label></td>
-        <td><input type="number" value={formData?.armorAndHealth?.maxHP||""} placeholder="0" name = "maxHP" onChange = {handleInputChange}/></td>
+        <td><input type="number" value={formData?.armorAndHealth?.maxHitPoints||""} placeholder="0" name = "maxHitPoints" onChange = {handleInputChange}/></td>
       </tr>
     </table>
   </div>

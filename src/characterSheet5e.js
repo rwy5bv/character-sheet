@@ -61,8 +61,8 @@ function CharacterSheet5e() {
   //Basically just appends the data onto formData in format
   //{childId.name: inputValue}
   //Ergo access Strength score by doing formData.Abilities.Strength
+  //Overwrites existing data if present
   const handleInputChange = (childId, name, inputValue) => {
-    debugger;
     setFormData((prevData) => ({
       ...prevData,
       [childId]: {
@@ -70,7 +70,28 @@ function CharacterSheet5e() {
         [name]: inputValue
       },
     }));
-    debugger;
+  };
+
+
+  //Special method for handling input change in dynamic table
+  //Essentially appends data on in format formData.AttacksAndSpellcasting.rowIndex.columnName
+
+  const handleInputChangeAttacksAndSpellcasting = (childId, rowIndex, name, inputValue) => {
+    setFormData((prevData) => {
+      //Have to test for existence, instantiate if not, otherwise throws undefined property error
+      const updatedChildData = prevData[childId] ? { ...prevData[childId] } : {};
+      updatedChildData[rowIndex] = updatedChildData[rowIndex] ? { ...updatedChildData[rowIndex] } : {};
+      return {
+        ...prevData,
+        [childId]: {
+          ...updatedChildData,
+          [rowIndex]: {
+            ...updatedChildData[rowIndex],
+            [name]: inputValue
+          }
+        }
+      };
+    });
   };
 
   //Send POST Request w/ characterSheetData
@@ -155,7 +176,7 @@ function CharacterSheet5e() {
           </div>
           <div className="characterSheet">
             <ArmorAndHealth id="armorAndHealth" onChildData={handleInputChange} formData={formData} />
-            <AttacksAndSpellcasting id="attacksAndSpellcasting" onChildData={handleInputChange} rowData={rowData} setRowData={setRowData} />
+            <AttacksAndSpellcasting id="attacksAndSpellcasting" onChildData={handleInputChangeAttacksAndSpellcasting} rowData={rowData} setRowData={setRowData} />
             <DeathSaves id="deathSaves" onChildData={handleInputChange} formData={formData}/>
           </div>
         </>
